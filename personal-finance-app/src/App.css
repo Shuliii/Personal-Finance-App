@@ -13,4 +13,9 @@
   --navy: #626070;
   --red: #c94736;
   --purple: #826cb0;
+  --white: #fff;
+}
+
+body {
+  background: #f2f3f7;
 }
