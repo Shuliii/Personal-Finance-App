@@ -1,5 +1,5 @@
-import styles from "./LoginHeader.module.css";
-import Logo from "../../assets/images/logo-large.svg";
+import styles from "./LoginSignupHeader.module.css";
+import Logo from "../assets/images/logo-large.svg";
 
 const LoginHeader = () => {
   return (

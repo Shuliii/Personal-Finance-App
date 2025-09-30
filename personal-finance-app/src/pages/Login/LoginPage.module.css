@@ -1,9 +1,0 @@
-.page {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr;
-}
-
-.card {
-  align-self: center;
-}

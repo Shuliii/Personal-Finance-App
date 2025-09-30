@@ -1,0 +1,21 @@
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 1fr;
+  min-height: 100vh;
+}
+
+.card {
+  /*layout*/
+  place-self: center;
+  width: clamp(
+    343px,
+    calc(343px + (560 - 343) * (100vw - 375px) / (768 - 375)),
+    560px
+  );
+  padding: 24px 20px;
+
+  /*appearace*/
+  border-radius: 12px;
+  background: var(--white);
+}

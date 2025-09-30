@@ -1,12 +1,12 @@
 import AuthLayout from "../../layouts/AuthLayout";
 import LoginSignUpForm from "../../components/LoginSignupForm";
 
-const LoginPage = () => {
+const SignupPage = () => {
   return (
     <AuthLayout>
-      <LoginSignUpForm title="Login" />
+      <LoginSignUpForm title="Sign Up" />
     </AuthLayout>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
