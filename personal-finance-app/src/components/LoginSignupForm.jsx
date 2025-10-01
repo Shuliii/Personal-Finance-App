@@ -1,13 +1,13 @@
 import styles from "./LoginSignupForm.module.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Button from "../components/button/Button";
 
-const LoginSignUpForm = ({title}) => {
+const LoginSignUpForm = ({ title }) => {
   const textHelper = (
     <p className={styles.helper}>
       {title === "Login" ? (
         <>
-          Need to create an account?
-          <Link to="/signup"> Sign Up</Link>
+          Need to create an account? <Link to="/signup">Sign Up</Link>
         </>
       ) : (
         <>
@@ -39,9 +39,9 @@ const LoginSignUpForm = ({title}) => {
           )}
         </label>
       </div>
-      <button type="submit">
+      <Button type="submit" variant="primary">
         {title === "Login" ? "Login" : "Create Account"}
-      </button>
+      </Button>
       {textHelper}
     </form>
   );

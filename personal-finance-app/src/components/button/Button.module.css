@@ -1,0 +1,16 @@
+.button {
+  padding: 16px;
+
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.primary {
+  background: var(--grey-900);
+  color: var(--white);
+}

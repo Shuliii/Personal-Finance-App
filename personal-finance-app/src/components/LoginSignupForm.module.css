@@ -39,4 +39,15 @@
 
 .helper {
   text-align: center;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-500);
+}
+
+.helper a {
+  font-weight: 700;
+  color: var(--grey-900);
 }
