@@ -1,8 +1,16 @@
 import styles from "./LoginSignupForm.module.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Button from "../components/button/Button";
 
-const LoginSignUpForm = ({ title }) => {
+const LoginSignUpForm = ({title, onSubmit}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    onSubmit(data);
+  };
+
+  //textHelper for the footer of the card
   const textHelper = (
     <p className={styles.helper}>
       {title === "Login" ? (
@@ -11,14 +19,13 @@ const LoginSignUpForm = ({ title }) => {
         </>
       ) : (
         <>
-          Already have an account?
-          <Link to="/login"> Log In</Link>
+          Already have an account? <Link to="/login">Log In</Link>
         </>
       )}
     </p>
   );
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <h1>{title}</h1>
       <div className={styles.formGroup}>
         {title === "Sign Up" && (

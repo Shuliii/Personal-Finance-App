@@ -23,7 +23,7 @@
   flex-direction: column;
   gap: 4px;
 
-  font-weight: 400;
+  font-weight: 700;
   font-size: 12px;
   line-height: 150%;
   letter-spacing: 0px;
@@ -41,6 +41,11 @@
   font-size: 14px;
   line-height: 150%;
   letter-spacing: 0px;
+}
+
+.formGroup label small {
+  text-align: right;
+  font-weight: 400;
 }
 
 .helper {

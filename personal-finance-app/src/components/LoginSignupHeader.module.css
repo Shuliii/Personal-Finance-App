@@ -10,3 +10,9 @@
   color: var(--white);
   border-radius: 0 0 8px 8px;
 }
+
+@media (min-width: 1440px) {
+  .header {
+    display: none;
+  }
+}

@@ -1,0 +1,26 @@
+.page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 52px;
+
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.nav {
+  grid-row: 2;
+  /* display: flex;
+  align-items: center; */
+
+  background: var(--grey-900);
+  border-radius: 8px 8px 0 0;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+}
