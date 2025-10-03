@@ -9,12 +9,14 @@
 .container {
   max-width: 343px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .nav {
   grid-row: 2;
-  /* display: flex;
-  align-items: center; */
+  display: flex;
+  align-items: stretch;
+  padding-top: 8px;
 
   background: var(--grey-900);
   border-radius: 8px 8px 0 0;
@@ -23,4 +25,30 @@
 .nav__container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.navLink {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* <-- now this works */
+}
+
+.navLink.active {
+  background: var(--white); /* white tab background */
+  border-radius: 8px 8px 0 0;
+}
+
+.navLink.active svg path {
+  fill: var(--green);
+}
+
+.main {
+  padding-block: clamp(
+    24px,
+    calc(24px + (32 - 24) * (100vw - 375px) / (768 - 375)),
+    32px
+  );
 }

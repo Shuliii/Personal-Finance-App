@@ -1,11 +1,11 @@
 import AppLayout from "../../layouts/AppLayout";
 
-const Home = () => {
+const Transactions = () => {
   return (
     <AppLayout title="Overview">
-      <div>this is Home page!</div>
+      <div>this is Transactions page!</div>
     </AppLayout>
   );
 };
 
-export default Home;
+export default Transactions;

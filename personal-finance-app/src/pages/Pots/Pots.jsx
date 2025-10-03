@@ -1,11 +1,11 @@
 import AppLayout from "../../layouts/AppLayout";
 
-const Home = () => {
+const Pots = () => {
   return (
     <AppLayout title="Overview">
-      <div>this is Home page!</div>
+      <div>this is Pots page!</div>
     </AppLayout>
   );
 };
 
-export default Home;
+export default Pots;
