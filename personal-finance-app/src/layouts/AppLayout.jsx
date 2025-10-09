@@ -1,5 +1,7 @@
 import styles from "./AppLayout.module.css";
-import {useState} from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSidebar } from "../store/sidebarSlice";
 import BigLogo from "../assets/images/logo-large.svg";
 import SmallLogo from "../assets/images/logo-small.svg";
 import Minimize from "../assets/images/icon-minimize-menu.svg";
@@ -9,10 +11,12 @@ import Budget from "../assets/images/icon-nav-budgets.svg?react";
 import Pots from "../assets/images/icon-nav-Pots.svg?react";
 import RecurringBills from "../assets/images/icon-nav-recurring-bills.svg?react";
 
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const AppLayout = ({title, children}) => {
-  const [collapsed, setCollapsed] = useState(false);
+const AppLayout = ({ title, children }) => {
+  const dispatch = useDispatch();
+  const collapsed = useSelector((state) => state.sidebar.collapsed);
+  // const [collapsed, setCollapsed] = useState(false);
   const minHandler = () => {
     setCollapsed(true);
   };
@@ -37,7 +41,7 @@ const AppLayout = ({title, children}) => {
         <div className={`${styles.container} ${styles.nav__container}`}>
           <NavLink
             to="/home"
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -46,7 +50,7 @@ const AppLayout = ({title, children}) => {
           </NavLink>
           <NavLink
             to="/transactions"
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -55,7 +59,7 @@ const AppLayout = ({title, children}) => {
           </NavLink>
           <NavLink
             to="/budget"
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -64,7 +68,7 @@ const AppLayout = ({title, children}) => {
           </NavLink>
           <NavLink
             to="/pots"
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -73,7 +77,7 @@ const AppLayout = ({title, children}) => {
           </NavLink>
           <NavLink
             to="/recurringBills"
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -86,9 +90,11 @@ const AppLayout = ({title, children}) => {
             src={Minimize}
             alt="toggle menu"
             className={`${styles.arrow} ${collapsed ? styles.rotated : ""}`}
-            onClick={collapsed ? maxHandler : minHandler}
+            onClick={() => dispatch(toggleSidebar())}
           />
-          {!collapsed && <p onClick={minHandler}>Minimize Menu</p>}
+          {!collapsed && (
+            <p onClick={() => dispatch(toggleSidebar())}>Minimize Menu</p>
+          )}
         </div>
       </nav>
       <main className={styles.main}>
