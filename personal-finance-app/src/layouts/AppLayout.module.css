@@ -96,9 +96,17 @@
   );
 }
 
-@media (min-width: 758px) {
+@media (min-width: 768px) {
   .textHelper {
     display: block;
+  }
+
+  .container {
+    max-width: clamp(
+      688px,
+      calc(688px + (1060 - 688) * (100vw - 768px) / (1440 - 768)),
+      1060px
+    );
   }
 }
 
@@ -136,6 +144,10 @@
     align-items: flex-start;
     gap: 4px;
     padding-right: 24px;
+  }
+
+  .containerCollapsed {
+    padding-right: 0;
   }
 
   .navLink {

@@ -1,7 +1,6 @@
 import styles from "./AppLayout.module.css";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../store/sidebarSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleSidebar} from "../store/sidebarSlice";
 import BigLogo from "../assets/images/logo-large.svg";
 import SmallLogo from "../assets/images/logo-small.svg";
 import Minimize from "../assets/images/icon-minimize-menu.svg";
@@ -11,18 +10,11 @@ import Budget from "../assets/images/icon-nav-budgets.svg?react";
 import Pots from "../assets/images/icon-nav-Pots.svg?react";
 import RecurringBills from "../assets/images/icon-nav-recurring-bills.svg?react";
 
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
-const AppLayout = ({ title, children }) => {
+const AppLayout = ({title, children, className}) => {
   const dispatch = useDispatch();
   const collapsed = useSelector((state) => state.sidebar.collapsed);
-  // const [collapsed, setCollapsed] = useState(false);
-  const minHandler = () => {
-    setCollapsed(true);
-  };
-  const maxHandler = () => {
-    setCollapsed(false);
-  };
   return (
     <div
       className={`${styles.page} ${
@@ -38,10 +30,14 @@ const AppLayout = ({ title, children }) => {
           )}
         </div>
 
-        <div className={`${styles.container} ${styles.nav__container}`}>
+        <div
+          className={`${styles.container} ${styles.nav__container} ${
+            collapsed && styles.containerCollapsed
+          }`}
+        >
           <NavLink
             to="/home"
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -50,7 +46,7 @@ const AppLayout = ({ title, children }) => {
           </NavLink>
           <NavLink
             to="/transactions"
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -59,7 +55,7 @@ const AppLayout = ({ title, children }) => {
           </NavLink>
           <NavLink
             to="/budget"
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -68,7 +64,7 @@ const AppLayout = ({ title, children }) => {
           </NavLink>
           <NavLink
             to="/pots"
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -77,7 +73,7 @@ const AppLayout = ({ title, children }) => {
           </NavLink>
           <NavLink
             to="/recurringBills"
-            className={({ isActive }) =>
+            className={({isActive}) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
@@ -98,7 +94,11 @@ const AppLayout = ({ title, children }) => {
         </div>
       </nav>
       <main className={styles.main}>
-        <div className={`${styles.container} ${styles.main__container}`}>
+        <div
+          className={`${styles.container} ${styles.main__container} ${
+            className || ""
+          }`}
+        >
           <h1>{title}</h1>
           {children}
         </div>
