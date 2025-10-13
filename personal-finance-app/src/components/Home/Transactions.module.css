@@ -10,6 +10,9 @@
     calc(20px + (32 - 20) * (100vw - 375px) / (768 - 375)),
     32px
   );
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 
   background: var(--white);
   border-radius: 12px;
@@ -36,6 +39,71 @@
 
   font-weight: 400;
   font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-500);
+}
+
+.transactions__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  padding-bottom: 20px; /* space before the divider */
+  margin-bottom: 20px; /* space after the divider */
+  border-bottom: 1px solid var(--grey-100); /* the gray line */
+}
+
+.transaction:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.transaction img {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+
+.transaction h1 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-900);
+}
+
+.right__text {
+  margin-left: auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.money {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: var(--grey-900);
+}
+.dateTime {
+  font-weight: 500;
+  font-size: 12px;
   line-height: 150%;
   letter-spacing: 0px;
   color: var(--grey-500);
