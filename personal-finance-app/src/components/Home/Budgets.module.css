@@ -42,3 +42,53 @@
   letter-spacing: 0px;
   color: var(--grey-500);
 }
+
+.budgets__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding-block: 8px;
+}
+
+.pie__chart {
+  place-self: center;
+}
+
+.budgets__additions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.addition__card {
+  display: flex;
+  gap: 16px;
+}
+
+.colorBar {
+  width: 4px;
+  height: 43px;
+  border-radius: 8px;
+}
+
+.addition__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.addition__text > p:nth-child(1) {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-500);
+}
+
+.addition__text > p:nth-child(2) {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-900);
+}
