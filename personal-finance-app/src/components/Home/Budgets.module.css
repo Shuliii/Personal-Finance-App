@@ -47,7 +47,11 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  padding-block: 8px;
+  padding-block: clamp(
+    8px,
+    calc(8px + (31 - 8) * (100vw - 375px) / (768 - 375)),
+    31px
+  );
 }
 
 .pie__chart {
@@ -91,4 +95,14 @@
   line-height: 150%;
   letter-spacing: 0px;
   color: var(--grey-900);
+}
+
+@media (min-width: 768px) {
+  .budgets__content {
+    grid-template-columns: 1fr 101px;
+  }
+  .budgets__additions {
+    grid-template-columns: 1fr;
+    padding-block: 10px;
+  }
 }

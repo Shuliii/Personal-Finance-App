@@ -4,7 +4,7 @@ import ArrowRight from "../../assets/images/icon-caret-right.svg";
 const Transactions = ({transactions}) => {
   const edittedTransactions = transactions.slice(0, 5);
   const helper = edittedTransactions.map((transaction) => (
-    <div className={styles.transaction}>
+    <div className={styles.transaction} key={transaction.date}>
       <img src={transaction.avatar} alt={transaction.name} />
       <h1>{transaction.name}</h1>
       <div className={styles.right__text}>
