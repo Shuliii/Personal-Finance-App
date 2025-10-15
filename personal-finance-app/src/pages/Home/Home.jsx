@@ -19,11 +19,14 @@ const Home = () => {
   );
   return (
     <AppLayout title="Overview" className={styles.page}>
-      <Balance balance={balance} />
-      <Pots pots={pots} />
-      <Transactions transactions={transactions} />
-      <Budgets budgets={budgets} />
-      <RecurringBills recurring={recurring} />
+      <Balance balance={balance} className={styles.balance} />
+      <Pots pots={pots} className={styles.pots} />
+      <Transactions
+        transactions={transactions}
+        className={styles.transactions}
+      />
+      <Budgets budgets={budgets} className={styles.budgets} />
+      <RecurringBills recurring={recurring} className={styles.recurringbills} />
     </AppLayout>
   );
 };

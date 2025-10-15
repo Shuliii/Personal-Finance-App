@@ -1,5 +1,10 @@
 .RecurringBills__card {
-  margin-top: -8px; /*this is to offset 24px gap */
+  /*this is to offset 24px gap */
+  margin-top: clamp(
+    -8px,
+    calc(-8px + (0px - -8px) * (100vw - 375px) / (768 - 375)),
+    0px
+  );
   padding-block: clamp(
     24px,
     calc(24px + (32 - 24) * (100vw - 375px) / (768 - 375)),
@@ -36,10 +41,57 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
 
+.seeDetails a {
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   letter-spacing: 0px;
   color: var(--grey-500);
+  text-decoration: none;
+}
+
+.RecurringBills__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recurring__bill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 20px;
+  padding-inline: 16px;
+
+  background: var(--beige-100);
+  border-radius: 8px;
+}
+
+.paid__bills {
+  border-left: 4px solid var(--green);
+}
+.upcoming__bills {
+  border-left: 4px solid var(--yellow);
+}
+
+.duesoon__bills {
+  border-left: 4px solid var(--cyan);
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-500);
+}
+
+.money {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-900);
 }

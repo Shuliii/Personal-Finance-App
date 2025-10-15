@@ -1,8 +1,9 @@
 import styles from "./Budgets.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
 import { PieChart, Pie, Cell } from "recharts";
+import { Link } from "react-router-dom";
 
-const Budgets = ({ budgets }) => {
+const Budgets = ({ budgets, className }) => {
   const helper = budgets.map((budget) => (
     <div className={styles.addition__card} key={budget.category}>
       <div
@@ -17,11 +18,11 @@ const Budgets = ({ budgets }) => {
     </div>
   ));
   return (
-    <div className={styles.budgets__card}>
+    <div className={`${styles.budgets__card} ${className || ""}`}>
       <div className={styles.text_wrapper}>
         <h1>Budgets</h1>
         <div className={styles.seeDetails}>
-          <p>See Details</p>
+          <Link to="/budget">See Details</Link>
           <img src={ArrowRight} alt="arrow right icon" />
         </div>
       </div>

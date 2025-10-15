@@ -48,3 +48,9 @@
     gap: 24px;
   }
 }
+
+@media (min-width: 1440px) {
+  .balance__wrapper {
+    margin-bottom: 8px;
+  }
+}

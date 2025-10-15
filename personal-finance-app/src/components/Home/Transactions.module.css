@@ -1,5 +1,10 @@
 .transactions__card {
-  margin-top: -8px; /*this is to offset 24px gap */
+  /*this is to offset 24px gap */
+  margin-top: clamp(
+    -8px,
+    calc(-8px + (0px - -8px) * (100vw - 375px) / (768 - 375)),
+    0px
+  );
   padding-block: clamp(
     24px,
     calc(24px + (32 - 24) * (100vw - 375px) / (768 - 375)),
@@ -36,12 +41,15 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
 
+.viewAll a {
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   letter-spacing: 0px;
   color: var(--grey-500);
+  text-decoration: none;
 }
 
 .transactions__wrapper {

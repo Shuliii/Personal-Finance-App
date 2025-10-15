@@ -1,8 +1,9 @@
 import styles from "./Pots.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
 import PotsIcon from "../../assets/images/icon-pot.svg?react";
+import { Link } from "react-router-dom";
 
-const Pots = ({pots}) => {
+const Pots = ({ pots, className }) => {
   const totalPots = pots
     .reduce((accumulator, pot) => {
       return accumulator + pot.total;
@@ -15,7 +16,7 @@ const Pots = ({pots}) => {
       <div className={styles.addition__card} key={pot.name}>
         <div
           className={styles.colorBar}
-          style={{backgroundColor: pot.theme}}
+          style={{ backgroundColor: pot.theme }}
         ></div>
 
         <div className={styles.addition__text}>
@@ -27,11 +28,11 @@ const Pots = ({pots}) => {
   });
 
   return (
-    <div className={styles.pots__card}>
+    <div className={`${styles.pots__card} ${className || ""}`}>
       <div className={styles.text_wrapper}>
         <h1>Pots</h1>
         <div className={styles.seeDetails}>
-          <p>See Details</p>
+          <Link to="/pots">See Details</Link>
           <img src={ArrowRight} alt="arrow right icon" />
         </div>
       </div>
