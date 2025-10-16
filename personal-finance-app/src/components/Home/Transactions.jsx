@@ -1,8 +1,8 @@
 import styles from "./Transactions.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Transactions = ({ transactions, className }) => {
+const Transactions = ({transactions, className}) => {
   const edittedTransactions = transactions.slice(0, 5);
   const helper = edittedTransactions.map((transaction) => (
     <div className={styles.transaction} key={transaction.date}>
@@ -29,7 +29,6 @@ const Transactions = ({ transactions, className }) => {
       </div>
     </div>
   ));
-  console.log(edittedTransactions);
   return (
     <div className={`${styles.transactions__card} ${className || ""}`}>
       <div className={styles.text_wrapper}>

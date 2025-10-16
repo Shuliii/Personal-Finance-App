@@ -1,0 +1,48 @@
+.pagiNation {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-900);
+}
+
+.prevPage,
+.nextPage,
+.pageButton {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  border: 1px solid var(--beige-500);
+  background: none;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.prevPage span,
+.nextPage span {
+  display: none;
+}
+
+.pages {
+  display: flex;
+  gap: 8px;
+}
+
+.active {
+  background: var(--grey-900);
+  color: var(--white);
+}
+@media (min-width: 768px) {
+  .prevPage span,
+  .nextPage span {
+    display: flex;
+  }
+}
