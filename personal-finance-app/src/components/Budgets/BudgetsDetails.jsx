@@ -1,19 +1,22 @@
 import styles from "./BudgetsDetails.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
 import { Link } from "react-router-dom";
+import Elipsis from "../../assets/images/icon-ellipsis.svg";
 
 const BudgetsDetails = ({ budgets, transactions }) => {
   const helper = budgets.map((budget) => {
-    const spentMoney = transactions
-      .filter((transaction) => transaction.category === budget.category)
-
-    const absSpentMoney = Math.abs(spentMoney.reduce((acc, x) => acc + x.amount, 0));
+    const spentMoney = transactions.filter(
+      (transaction) => transaction.category === budget.category
+    );
+    const absSpentMoney = Math.abs(
+      spentMoney.reduce((acc, x) => acc + x.amount, 0)
+    );
     const percent =
       absSpentMoney > budget.maximum
         ? 100
         : ((absSpentMoney / budget.maximum) * 100).toPrecision(3);
 
-    const tobeInterated = spentMoney.sclice(0,3);
+    const tobeInterated = spentMoney.slice(0, 3);
     return (
       <div className={styles.budget__card} key={budget.category}>
         <div className={styles.budget__card__header}>
@@ -22,7 +25,7 @@ const BudgetsDetails = ({ budgets, transactions }) => {
             style={{ backgroundColor: budget.theme }}
           ></div>
           <h1>{budget.category}</h1>
-          <p>icon here</p>
+          <img src={Elipsis} alt="elipsis icon" />
         </div>
         <div className={styles.budget__card__content}>
           <p>Maximum of ${budget.maximum}</p>
@@ -63,12 +66,33 @@ const BudgetsDetails = ({ budgets, transactions }) => {
           <div className={styles.budget__transaction__header}>
             <h1>Latest Spending</h1>
             <div className={styles.seeDetails}>
-              <Link to="/budget">See Details</Link>
+              <Link to="/budget">See All</Link>
               <img src={ArrowRight} alt="arrow right icon" />
             </div>
           </div>
           <div className={styles.budget__transaction__content}>
-
+            {tobeInterated.map((item, index) => (
+              <div className={styles.transaction__card} key={index}>
+                <img
+                  src={item.avatar}
+                  alt={item.name}
+                  className={styles.avatar}
+                />
+                <h2>{item.name}</h2>
+                <div className={styles.transaction__right__text}>
+                  <p className={styles.money}>
+                    -${Math.abs(item.amount).toFixed(2)}
+                  </p>
+                  <p className={styles.date}>
+                    {new Date(item.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
