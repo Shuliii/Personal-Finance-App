@@ -57,29 +57,3 @@ const TransactionsCard = ({transactions}) => {
 };
 
 export default TransactionsCard;
-
-{
-  /* <div className={styles.transaction} key={transaction.date}>
-      <img src={transaction.avatar} alt={transaction.name} />
-      <h1>{transaction.name}</h1>
-      <div className={styles.right__text}>
-        {transaction.amount >= 0 ? (
-          <p className={`${styles.money} ${styles.positive}`}>
-            +${Math.abs(transaction.amount)}
-          </p>
-        ) : (
-          <p className={`${styles.money} ${styles.negative}`}>
-            -${Math.abs(transaction.amount)}
-          </p>
-        )}
-
-        <p className={styles.dateTime}>
-          {new Date(transaction.date).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })}
-        </p>
-      </div>
-    </div> */
-}
