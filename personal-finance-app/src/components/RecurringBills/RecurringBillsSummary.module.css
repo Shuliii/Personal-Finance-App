@@ -1,0 +1,110 @@
+.summary__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.totalBills {
+    padding-inline: clamp(
+        20px,
+        calc(20px + (24 - 20) * (100vw - 375px) / (768 - 375)),
+        24px
+      );
+    padding-block: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    background: var(--grey-900);
+    border-radius: 12px;
+    color: var(--white);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.text h1 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+}
+
+.text p {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: 0px;;
+}
+
+.summary {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background: var(--white);
+    border-radius: 12px;
+}
+
+.summary h1 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: var(--grey-900);
+}
+
+.summary__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--beige-100);
+    margin-bottom: 16px;
+}
+
+.summary__card:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.summary__card > h2 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: var(--grey-500);
+}
+
+.summary__card p {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: var(--grey-900);
+}
+
+.summary__card .dueSoon {
+    color: var(--red);
+}
+
+@media(min-width: 768px) {
+    .summary__wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px
+    }
+
+    .totalBills {
+        flex-direction: column;
+        gap: 32px;
+        align-items: start;
+    }
+}
