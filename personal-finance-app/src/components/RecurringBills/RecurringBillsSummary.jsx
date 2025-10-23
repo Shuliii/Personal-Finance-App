@@ -26,7 +26,6 @@ const RecurringBillsSummary = ({ RecurringBills }) => {
     if (nextDate < now) nextDate.setMonth(nextDate.getMonth() + 1);
 
     const diffDays = Math.ceil((nextDate - now) / (1000 * 60 * 60 * 24));
-    console.log(diffDays);
     if (diffDays <= 3) return "dueSoon";
     if (diffDays <= 10) return "upcoming";
     return false;
@@ -54,15 +53,24 @@ const RecurringBillsSummary = ({ RecurringBills }) => {
         <div className={styles.summary__cards}>
           <div className={styles.summary__card}>
             <h2>Paid Bills</h2>
-            <p>{paidBills.length} (${Math.abs(paidBills.reduce((acc, x) => acc + x.amount, 0))})</p>
+            <p>
+              {paidBills.length} ($
+              {Math.abs(paidBills.reduce((acc, x) => acc + x.amount, 0))})
+            </p>
           </div>
           <div className={styles.summary__card}>
             <h2>Upcoming Bills</h2>
-            <p>{upcomingBills.length} (${Math.abs(upcomingBills.reduce((acc, x) => acc + x.amount, 0))})</p>
+            <p>
+              {upcomingBills.length} ($
+              {Math.abs(upcomingBills.reduce((acc, x) => acc + x.amount, 0))})
+            </p>
           </div>
           <div className={styles.summary__card}>
             <h2 className={styles.dueSoon}>Due Soon</h2>
-            <p className={styles.dueSoon}>{dueSoonBills.length} (${Math.abs(dueSoonBills.reduce((acc, x) => acc + x.amount, 0))})</p>
+            <p className={styles.dueSoon}>
+              {dueSoonBills.length} ($
+              {Math.abs(dueSoonBills.reduce((acc, x) => acc + x.amount, 0))})
+            </p>
           </div>
         </div>
       </div>

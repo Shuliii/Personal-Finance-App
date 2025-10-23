@@ -1,0 +1,68 @@
+.details__wrapper {
+  padding-inline: 20px;
+  padding-block: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.details__control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.details__control input {
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--grey-100);
+}
+
+.card:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.billTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.billTitle img {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+
+.billTitle h1 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.dueDate {
+  font-size: 12px;
+  line-height: 150%;
+}
