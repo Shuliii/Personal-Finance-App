@@ -23,16 +23,16 @@ const RecurringBillsDetails = ({ RecurringBills }) => {
     }
     return (
       <div className={styles.card} key={bill.name}>
-        <div className={styles.grid}>
-          <div className={styles.billTitle}>
-            <img src={bill.avatar} />
-            <h1>{bill.name}</h1>
-          </div>
+        <div className={styles.billTitle}>
+          <img src={bill.avatar} />
+          <h1>{bill.name}</h1>
+        </div>
+        <div className={styles.billDetails}>
           <div className={styles.dueDate}>
             Monthly-{getOrdinal(new Date(bill.date).getDate())}
           </div>
+          <div className={styles.amount}>$250</div>
         </div>
-        <div className={styles.amount}>$250</div>
       </div>
     );
   });
@@ -41,7 +41,25 @@ const RecurringBillsDetails = ({ RecurringBills }) => {
     <div className={styles.details__wrapper}>
       <div className={styles.details__control}>
         <input type="text" placeholder="Search bills"></input>
-        <img src={SortIcon} alt="sort icon" />
+        <img src={SortIcon} alt="sort icon" className={styles.sortIcon} />
+        <label className={styles.sortBy}>
+          Sort By
+          <select>
+            <option>Latest</option>
+            <option>Oldest</option>
+            <option>A to Z</option>
+            <option>Z to A</option>
+            <option>Highest</option>
+            <option>Lowest</option>
+          </select>
+        </label>
+      </div>
+      <div className={styles.listHeader}>
+        <span>Bill Title</span>
+        <span className={styles.listHeader__details}>
+          <p>Due Date</p>
+          <p>Amount</p>
+        </span>
       </div>
       <div className={styles.details__card__wrapper}>{helper}</div>
     </div>

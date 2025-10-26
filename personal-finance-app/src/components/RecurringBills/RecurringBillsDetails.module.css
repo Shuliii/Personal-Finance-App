@@ -1,6 +1,14 @@
 .details__wrapper {
-  padding-inline: 20px;
-  padding-block: 24px;
+  padding-inline: clamp(
+    20px,
+    calc(20px + (32 - 20) * (100vw - 375px) / (768 - 375)),
+    32px
+  );
+  padding-block: clamp(
+    24px,
+    calc(24px + (32 - 24) * (100vw - 375px) / (768 - 375)),
+    32px
+  );
 
   display: flex;
   flex-direction: column;
@@ -19,12 +27,35 @@
 
 .details__control input {
   width: 100%;
+  padding: 12px 20px;
+
+  border: none;
+  box-shadow: inset 0 0 0 1px var(--beige-500);
+  border-radius: 8px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.details__control img {
+  width: 20px;
+  height: 20px;
+}
+
+.sortBy {
+  display: none;
+}
+
+.listHeader {
+  display: none;
 }
 
 .card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
 
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -35,12 +66,6 @@
   padding-bottom: 0;
   margin-bottom: 0;
   border-bottom: none;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
 }
 
 .billTitle {
@@ -62,7 +87,58 @@
   letter-spacing: 0px;
 }
 
+.billDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .dueDate {
+  font-weight: 400;
   font-size: 12px;
   line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--green);
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--grey-900);
+}
+
+@media (min-width: 768px) {
+  .sortIcon {
+    display: none;
+  }
+
+  .sortBy {
+    display: block;
+  }
+
+  .listHeader,
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 252px;
+    gap: 32px;
+  }
+
+  .listHeader__details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .listHeader {
+    padding-block: 12px;
+    border-bottom: 1px solid var(--grey-100);
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: var(--grey-500);
+  }
 }
