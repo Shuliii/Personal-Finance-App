@@ -1,0 +1,21 @@
+.modal__wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 101;
+
+  pointer-events: none;
+}
+
+.modal__content {
+  pointer-events: auto; /* 👈 re-enable click inside modal box */
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  min-width: 320px;
+  max-width: 480px;
+}

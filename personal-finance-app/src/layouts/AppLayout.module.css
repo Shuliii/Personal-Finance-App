@@ -96,6 +96,12 @@
   );
 }
 
+.main__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .title {
   padding-block: 9px;
 

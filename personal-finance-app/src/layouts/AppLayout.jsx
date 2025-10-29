@@ -1,6 +1,9 @@
 import styles from "./AppLayout.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { toggleSidebar } from "../store/sidebarSlice";
+import { NavLink } from "react-router-dom";
+
 import BigLogo from "../assets/images/logo-large.svg";
 import SmallLogo from "../assets/images/logo-small.svg";
 import Minimize from "../assets/images/icon-minimize-menu.svg";
@@ -10,9 +13,11 @@ import Budget from "../assets/images/icon-nav-budgets.svg?react";
 import Pots from "../assets/images/icon-nav-Pots.svg?react";
 import RecurringBills from "../assets/images/icon-nav-recurring-bills.svg?react";
 
-import { NavLink } from "react-router-dom";
+import Button from "../components/button/Button";
+import AddNewPot from "../components/Modal/AddNewPot";
 
 const AppLayout = ({ title, children, className }) => {
+  const [showNewPot, setShowNewPot] = useState(false);
   const dispatch = useDispatch();
   const collapsed = useSelector((state) => state.sidebar.collapsed);
   return (
@@ -99,10 +104,21 @@ const AppLayout = ({ title, children, className }) => {
             className || ""
           }`}
         >
-          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.main__header}>
+            <h1 className={styles.title}>{title}</h1>
+            {title === "Budgets" && (
+              <Button variant="primary">+ Add New Budget</Button>
+            )}
+            {title === "Pots" && (
+              <Button variant="primary" onClick={() => setShowNewPot(true)}>
+                + Add New Pot
+              </Button>
+            )}
+          </div>
           {children}
         </div>
       </main>
+      {showNewPot && <AddNewPot onClick={() => setShowNewPot(false)} />}
     </div>
   );
 };
