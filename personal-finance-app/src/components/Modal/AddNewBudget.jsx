@@ -1,8 +1,8 @@
-import styles from "./AddNewPot.module.css";
+import styles from "./AddNewBudget.module.css";
 import Backdrop from "./Backdrop";
 import ModalLayout from "../../layouts/ModalLayout";
 
-const AddNewPot = ({ onClick }) => {
+const AddNewBudget = ({ onClick }) => {
   const themes = [
     { name: "Green", color: "#00875A" },
     { name: "Blue", color: "#007AFF" },
@@ -11,11 +11,10 @@ const AddNewPot = ({ onClick }) => {
     { name: "Purple", color: "#A142F4" },
     { name: "Teal", color: "#00BFA5" },
   ];
-
   const description = (
     <p>
-      Create a pot to set savings targets. These can help keep you on track as
-      you save for special purchases.
+      Choose a category to set a spending budget. These categories can help you
+      monitor spending.
     </p>
   );
   return (
@@ -29,14 +28,15 @@ const AddNewPot = ({ onClick }) => {
       >
         <div className={styles.modal__form}>
           <label>
-            Pot Name
-            <input type="text" name="name"></input>
-            <small>30 characters left</small>
+            Budget Category
+            <select>
+              <option>Entertainment</option>
+            </select>
           </label>
           <label className={styles.placeholder}>
-            Target
+            Maximum Spend
             <span className={styles.currency}>$</span>
-            <input type="number" name="target"></input>
+            <input type="number" name="maximum"></input>
           </label>
           <label>
             Theme
@@ -54,4 +54,4 @@ const AddNewPot = ({ onClick }) => {
   );
 };
 
-export default AddNewPot;
+export default AddNewBudget;

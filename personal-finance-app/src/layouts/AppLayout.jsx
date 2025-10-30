@@ -15,9 +15,11 @@ import RecurringBills from "../assets/images/icon-nav-recurring-bills.svg?react"
 
 import Button from "../components/button/Button";
 import AddNewPot from "../components/Modal/AddNewPot";
+import AddNewBudget from "../components/Modal/AddNewBudget";
 
 const AppLayout = ({ title, children, className }) => {
   const [showNewPot, setShowNewPot] = useState(false);
+  const [showNewBudget, setShowNewBudget] = useState(false);
   const dispatch = useDispatch();
   const collapsed = useSelector((state) => state.sidebar.collapsed);
   return (
@@ -107,7 +109,9 @@ const AppLayout = ({ title, children, className }) => {
           <div className={styles.main__header}>
             <h1 className={styles.title}>{title}</h1>
             {title === "Budgets" && (
-              <Button variant="primary">+ Add New Budget</Button>
+              <Button variant="primary" onClick={() => setShowNewBudget(true)}>
+                + Add New Budget
+              </Button>
             )}
             {title === "Pots" && (
               <Button variant="primary" onClick={() => setShowNewPot(true)}>
@@ -119,6 +123,9 @@ const AppLayout = ({ title, children, className }) => {
         </div>
       </main>
       {showNewPot && <AddNewPot onClick={() => setShowNewPot(false)} />}
+      {showNewBudget && (
+        <AddNewBudget onClick={() => setShowNewBudget(false)} />
+      )}
     </div>
   );
 };
