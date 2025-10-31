@@ -22,4 +22,4 @@ const budgetSlice = createSlice({
 });
 
 export default budgetSlice.reducer;
-export const {addBudget} = budgetSlice.actions;
+export const {addBudget, editBudget} = budgetSlice.actions;

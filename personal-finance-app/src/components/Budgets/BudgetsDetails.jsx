@@ -2,8 +2,27 @@ import styles from "./BudgetsDetails.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
 import {Link} from "react-router-dom";
 import Elipsis from "../../assets/images/icon-ellipsis.svg";
+import {useState, useRef, useEffect} from "react";
 
 const BudgetsDetails = ({budgets, transactions}) => {
+  const [open, setOpen] = useState(null);
+  const menuRef = useRef(null);
+
+  const toggleMenu = (category) => {
+    setOpen((prev) => (prev === category ? null : category));
+  };
+
+  // close dropdown when clicking outside
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (menuRef.current && !menuRef.current.contains(event.target)) {
+  //       setOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
+
   const helper = budgets.map((budget) => {
     const spentMoney = transactions.filter(
       (transaction) => transaction.category === budget.category
@@ -25,7 +44,21 @@ const BudgetsDetails = ({budgets, transactions}) => {
             style={{backgroundColor: budget.theme}}
           ></div>
           <h1>{budget.category}</h1>
-          <img src={Elipsis} alt="elipsis icon" />
+          <img
+            src={Elipsis}
+            alt="elipsis icon"
+            onClick={() => toggleMenu(budget.category)}
+          />
+          {open === budget.category && (
+            <div className={styles.dropdown}>
+              <button onClick={() => console.log("Edit Budget")}>
+                Edit Budget
+              </button>
+              <button onClick={() => console.log("Delete Budget")}>
+                Delete Budget
+              </button>
+            </div>
+          )}
         </div>
         <div className={styles.budget__card__content}>
           <p>Maximum of ${budget.maximum}</p>

@@ -48,7 +48,7 @@ const AddNewBudget = ({onClick}) => {
   const [form, setForm] = useState({
     category: "",
     maximum: "",
-    theme: allThemes[0].color,
+    theme: allThemes[0].color.toUpperCase(),
   });
   const dispatch = useDispatch();
 
