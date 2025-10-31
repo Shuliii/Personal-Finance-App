@@ -1,10 +1,15 @@
 import styles from "./ModalLayout.module.css";
-
 import Close from "../assets/images/icon-close-modal.svg";
-
 import Button from "../components/button/Button";
 
-const ModalLayout = ({ type, nav, description, children, onClick }) => {
+const ModalLayout = ({
+  type,
+  nav,
+  description,
+  children,
+  onClick,
+  handleAddClick,
+}) => {
   return (
     <div className={styles.modal__wrapper}>
       <div className={styles.modal__content}>
@@ -14,7 +19,7 @@ const ModalLayout = ({ type, nav, description, children, onClick }) => {
         </div>
         <div className={styles.modal__description}>{description}</div>
         {children}
-        <Button variant="primary">
+        <Button variant="primary" onClick={type === "Add" && handleAddClick}>
           {type === "Add" ? `Add ${nav}` : "Save Changes"}
         </Button>
       </div>

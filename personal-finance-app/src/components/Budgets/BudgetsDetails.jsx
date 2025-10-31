@@ -1,9 +1,9 @@
 import styles from "./BudgetsDetails.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Elipsis from "../../assets/images/icon-ellipsis.svg";
 
-const BudgetsDetails = ({ budgets, transactions }) => {
+const BudgetsDetails = ({budgets, transactions}) => {
   const helper = budgets.map((budget) => {
     const spentMoney = transactions.filter(
       (transaction) => transaction.category === budget.category
@@ -22,7 +22,7 @@ const BudgetsDetails = ({ budgets, transactions }) => {
         <div className={styles.budget__card__header}>
           <div
             className={styles.colorCircle}
-            style={{ backgroundColor: budget.theme }}
+            style={{backgroundColor: budget.theme}}
           ></div>
           <h1>{budget.category}</h1>
           <img src={Elipsis} alt="elipsis icon" />
@@ -32,14 +32,14 @@ const BudgetsDetails = ({ budgets, transactions }) => {
           <div className={styles.progressBar}>
             <div
               className={styles.progressFill}
-              style={{ width: `${percent}%`, backgroundColor: budget.theme }}
+              style={{width: `${percent}%`, backgroundColor: budget.theme}}
             />
           </div>
           <div className={styles.content__details}>
             <div className={styles.content__details__left}>
               <div
                 className={styles.colorBar}
-                style={{ backgroundColor: budget.theme }}
+                style={{backgroundColor: budget.theme}}
               ></div>
               <div className={styles.textHelper}>
                 <h3>Spent</h3>
@@ -49,7 +49,7 @@ const BudgetsDetails = ({ budgets, transactions }) => {
             <div className={styles.content__details__right}>
               <div
                 className={styles.colorBar}
-                style={{ backgroundColor: "#f8f4f0" }}
+                style={{backgroundColor: "#f8f4f0"}}
               ></div>
               <div className={styles.textHelper}>
                 <h3>Free</h3>
