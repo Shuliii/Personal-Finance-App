@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
 
-  z-index: 101;
+  z-index: 5000;
 
   pointer-events: none;
 }
@@ -22,7 +22,7 @@
     calc(20px + (32 - 20) * (100vw - 375px) / (768 - 375)),
     32px
   );
-  max-width: clamp(
+  width: clamp(
     335px,
     calc(335px + (560 - 335) * (100vw - 375px) / (768 - 375)),
     560px

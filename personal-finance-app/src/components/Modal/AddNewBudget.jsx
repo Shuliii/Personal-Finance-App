@@ -4,6 +4,7 @@ import ModalLayout from "../../layouts/ModalLayout";
 import {useSelector, useDispatch} from "react-redux";
 import {useState} from "react";
 import {addBudget} from "../../store/budgetsSlice";
+import {createPortal} from "react-dom";
 
 const allThemes = [
   {name: "Green", color: "#277c78"},
@@ -78,8 +79,7 @@ const AddNewBudget = ({onClick}) => {
     setForm((prev) => ({...prev, [name]: value}));
   };
 
-  console.log(form);
-  return (
+  return createPortal(
     <>
       <Backdrop onClick={onClick} />
       <ModalLayout
@@ -134,7 +134,8 @@ const AddNewBudget = ({onClick}) => {
           </label>
         </div>
       </ModalLayout>
-    </>
+    </>,
+    document.body
   );
 };
 

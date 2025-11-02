@@ -3,9 +3,12 @@ import ArrowRight from "../../assets/images/icon-caret-right.svg";
 import {Link} from "react-router-dom";
 import Elipsis from "../../assets/images/icon-ellipsis.svg";
 import {useState, useRef, useEffect} from "react";
+import EditBudget from "../Modal/EditBudget";
 
 const BudgetsDetails = ({budgets, transactions}) => {
   const [open, setOpen] = useState(null);
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const menuRef = useRef(null);
 
   const toggleMenu = (category) => {
@@ -51,10 +54,16 @@ const BudgetsDetails = ({budgets, transactions}) => {
           />
           {open === budget.category && (
             <div className={styles.dropdown}>
-              <button onClick={() => console.log("Edit Budget")}>
+              <button
+                className={styles.edit}
+                onClick={() => setEditModal(budget.category)}
+              >
                 Edit Budget
               </button>
-              <button onClick={() => console.log("Delete Budget")}>
+              <button
+                className={styles.delete}
+                onClick={() => console.log("Delete Budget")}
+              >
                 Delete Budget
               </button>
             </div>
@@ -131,7 +140,14 @@ const BudgetsDetails = ({budgets, transactions}) => {
       </div>
     );
   });
-  return <div className={styles.BudgetDetails}>{helper}</div>;
+  return (
+    <>
+      <div className={styles.BudgetDetails}>{helper}</div>
+      {editModal && (
+        <EditBudget onClick={() => setEditModal(false)} category={editModal} />
+      )}
+    </>
+  );
 };
 
 export default BudgetsDetails;

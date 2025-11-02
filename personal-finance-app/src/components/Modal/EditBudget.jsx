@@ -1,10 +1,9 @@
-import styles from "./AddNewPot.module.css";
+import styles from "./EditBudget.module.css";
 import Backdrop from "./Backdrop";
 import ModalLayout from "../../layouts/ModalLayout";
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from "react";
-import {addPots} from "../../store/potsSlice.js";
 import {createPortal} from "react-dom";
+import {useSelector} from "react-redux";
+import {useState} from "react";
 
 const allThemes = [
   {name: "Green", color: "#277c78"},
@@ -25,83 +24,57 @@ const allThemes = [
 ];
 
 const description = (
-  <p>
-    Create a pot to set savings targets. These can help keep you on track as you
-    save for special purchases.
-  </p>
+  <p>As your budgets change, feel free to update your spending limits.</p>
 );
 
-const AddNewPot = ({onClick}) => {
-  const pots = useSelector((state) => state.pots);
-  const [form, setForm] = useState({
-    name: "",
-    target: "",
-    total: 0,
-    theme: allThemes[0].color.toUpperCase(),
-  });
-  const dispatch = useDispatch();
-  const usedThemes = pots.map((b) => b.theme.toLowerCase());
+const EditBudget = ({onClick, category}) => {
+  const budgets = useSelector((state) => state.budgets);
+  const selectedBudget = budgets.find((b) => b.category === category);
 
-  const handleAddClick = () => {
-    const matchedTheme = allThemes.find(
-      (theme) => theme.name.toLowerCase() === form.theme.toLowerCase()
-    );
+  const [budget, setBudget] = useState(selectedBudget);
+  const usedThemes = budgets.map((b) => b.theme.toLowerCase());
 
-    const newPots = {
-      name: form.name,
-      target: form.target,
-      total: 0,
-      theme: matchedTheme ? matchedTheme.color.toUpperCase() : "#277C78",
-    };
-
-    console.log(newPots);
-    dispatch(addPots(newPots));
-    onClick();
-  };
+  const currentTheme =
+    allThemes.find((t) => t.color.toLowerCase() === budget.theme.toLowerCase())
+      ?.name || "";
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    setForm((prev) => ({...prev, [name]: value}));
+    setBudget((prev) => ({...prev, [name]: value}));
   };
-  console.log(form);
+  console.log(budget);
   return createPortal(
     <>
       <Backdrop onClick={onClick} />
       <ModalLayout
-        type="Add"
-        nav="Pot"
+        type="Edit"
+        nav="Budget"
         description={description}
         onClick={onClick}
-        handleAddClick={handleAddClick}
       >
         <div className={styles.modal__form}>
           <label>
-            Pot Name
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-            ></input>
-            <small>30 characters left</small>
+            Budget Category
+            <select name="category" disabled>
+              <option>{budget.category}</option>
+            </select>
           </label>
           <label className={styles.placeholder}>
-            Target
+            Maximum Spend
             <span className={styles.currency}>$</span>
             <input
               type="number"
-              name="target"
-              value={form.target}
+              name="maximum"
+              value={budget.maximum}
               onChange={handleChange}
             ></input>
           </label>
           <label>
             Theme
-            <select name="theme" value={form.theme} onChange={handleChange}>
+            <select name="theme" value={currentTheme} onChange={handleChange}>
               {allThemes.map((theme) => (
                 <option
                   key={theme.name}
-                  value={theme.name}
                   disabled={usedThemes.includes(theme.color)}
                 >
                   {theme.name}
@@ -116,4 +89,4 @@ const AddNewPot = ({onClick}) => {
   );
 };
 
-export default AddNewPot;
+export default EditBudget;

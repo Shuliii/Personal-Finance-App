@@ -9,6 +9,7 @@ const ModalLayout = ({
   children,
   onClick,
   handleAddClick,
+  handleEditClick,
 }) => {
   return (
     <div className={styles.modal__wrapper}>
