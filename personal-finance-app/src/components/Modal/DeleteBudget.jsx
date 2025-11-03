@@ -1,4 +1,4 @@
-import { createPortal } from "react-dom";
+import {createPortal} from "react-dom";
 import Backdrop from "./Backdrop";
 import DeleteModalLayout from "../../layouts/deleteModalLayout";
 
@@ -9,7 +9,7 @@ const description = (
   </p>
 );
 
-const deleteBudget = ({ onClick, name }) => {
+const deleteBudget = ({onClick, name}) => {
   return createPortal(
     <>
       <Backdrop onClick={onClick} />
@@ -17,6 +17,7 @@ const deleteBudget = ({ onClick, name }) => {
         onClick={onClick}
         description={description}
         name={name}
+        type="budget"
       />
     </>,
     document.body

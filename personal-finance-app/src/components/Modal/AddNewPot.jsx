@@ -1,11 +1,11 @@
 import styles from "./AddNewPot.module.css";
 import Backdrop from "./Backdrop";
 import ModalLayout from "../../layouts/ModalLayout";
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { addPots } from "../../store/potsSlice.js";
-import { createPortal } from "react-dom";
-import { allThemes } from "../../data/allThemes";
+import {useSelector, useDispatch} from "react-redux";
+import {useState} from "react";
+import {addPot} from "../../store/potsSlice.js";
+import {createPortal} from "react-dom";
+import {allThemes} from "../../data/allThemes";
 
 const description = (
   <p>
@@ -14,7 +14,7 @@ const description = (
   </p>
 );
 
-const AddNewPot = ({ onClick }) => {
+const AddNewPot = ({onClick}) => {
   const pots = useSelector((state) => state.pots);
   const [form, setForm] = useState({
     name: "",
@@ -38,13 +38,13 @@ const AddNewPot = ({ onClick }) => {
     };
 
     console.log(newPots);
-    dispatch(addPots(newPots));
+    dispatch(addPot(newPots));
     onClick();
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const {name, value} = e.target;
+    setForm((prev) => ({...prev, [name]: value}));
   };
   console.log(form);
   return createPortal(

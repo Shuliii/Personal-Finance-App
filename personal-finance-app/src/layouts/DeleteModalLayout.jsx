@@ -1,13 +1,16 @@
 import styles from "./DeleteModalLayout.module.css";
 import Close from "../assets/images/icon-close-modal.svg";
 import Button from "../components/button/Button";
-import { deleteBudget } from "../store/budgetsSlice";
-import { useDispatch } from "react-redux";
+import {deleteBudget} from "../store/budgetsSlice";
+import {deletePot} from "../store/potsSlice";
+import {useDispatch} from "react-redux";
 
-const DeleteModalLayout = ({ name, onClick, description }) => {
+const DeleteModalLayout = ({name, onClick, description, type}) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteBudget(name));
+    type === "budget"
+      ? dispatch(deleteBudget(name))
+      : dispatch(deletePot(name));
     onClick();
   };
   return (

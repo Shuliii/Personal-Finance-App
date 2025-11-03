@@ -8,12 +8,17 @@ const potsSlice = createSlice({
   name: "pots",
   initialState: pots,
   reducers: {
-    addPots: (state, action) => {
+    addPot: (state, action) => {
       state.push(action.payload);
+    },
+    editPot: (state, action) => {},
+    deletePot: (state, action) => {
+      const pot = action.payload;
+      return state.filter((a) => a.name !== pot);
     },
     addMoney: (state, action) => {},
   },
 });
 
 export default potsSlice.reducer;
-export const {addPots} = potsSlice.actions;
+export const {addPot, editPot, deletePot} = potsSlice.actions;
