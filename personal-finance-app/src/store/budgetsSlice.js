@@ -20,8 +20,7 @@ const budgetSlice = createSlice({
     },
     deleteBudget: (state, action) => {
       const category = action.payload;
-      const existingBudget = state.find((b) => b.category === category);
-      state.pop(existingBudget);
+      return state.filter((b) => b.category !== category);
     },
   },
 });
