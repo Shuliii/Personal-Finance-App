@@ -5,24 +5,7 @@ import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { editBudget } from "../../store/budgetsSlice";
-
-const allThemes = [
-  { name: "Green", color: "#277c78" },
-  { name: "Yellow", color: "#f2cdac" },
-  { name: "Cyan", color: "#82c9d7" },
-  { name: "Navy", color: "#626070" },
-  { name: "Red", color: "#c94736" },
-  { name: "Purple", color: "#826cb0" },
-  { name: "Pink", color: "#af81ba" },
-  { name: "Turquoise", color: "#597c7c" },
-  { name: "Brown", color: "#93674f" },
-  { name: "Magenta", color: "#934f6f" },
-  { name: "Blue", color: "#3f82b2" },
-  { name: "Navy Grey", color: "#97a0ac" },
-  { name: "Army Green", color: "#7f9161" },
-  { name: "Gold", color: "#cab361" },
-  { name: "Orange", color: "#be6c49" },
-];
+import { allThemes } from "../../data/allThemes";
 
 const description = (
   <p>As your budgets change, feel free to update your spending limits.</p>
@@ -40,10 +23,6 @@ const EditBudget = ({ onClick, category }) => {
   });
 
   const usedThemes = budgets.map((b) => b.theme.toLowerCase());
-
-  const currentTheme =
-    allThemes.find((t) => t.color.toLowerCase() === budget.theme.toLowerCase())
-      ?.name || "";
 
   const handleChange = (e) => {
     const { name, value } = e.target;

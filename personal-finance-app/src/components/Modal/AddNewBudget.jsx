@@ -1,28 +1,11 @@
 import styles from "./AddNewBudget.module.css";
 import Backdrop from "./Backdrop";
 import ModalLayout from "../../layouts/ModalLayout";
-import {useSelector, useDispatch} from "react-redux";
-import {useState} from "react";
-import {addBudget} from "../../store/budgetsSlice";
-import {createPortal} from "react-dom";
-
-const allThemes = [
-  {name: "Green", color: "#277c78"},
-  {name: "Yellow", color: "#f2cdac"},
-  {name: "Cyan", color: "#82c9d7"},
-  {name: "Navy", color: "#626070"},
-  {name: "Red", color: "#c94736"},
-  {name: "Purple", color: "#826cb0"},
-  {name: "Pink", color: "#af81ba"},
-  {name: "Turquoise", color: "#597c7c"},
-  {name: "Brown", color: "#93674f"},
-  {name: "Magenta", color: "#934f6f"},
-  {name: "Blue", color: "#3f82b2"},
-  {name: "Navy Grey", color: "#97a0ac"},
-  {name: "Army Green", color: "#7f9161"},
-  {name: "Gold", color: "#cab361"},
-  {name: "Orange", color: "#be6c49"},
-];
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { addBudget } from "../../store/budgetsSlice";
+import { createPortal } from "react-dom";
+import { allThemes } from "../../data/allThemes";
 
 const allCategories = [
   "Entertainment",
@@ -44,7 +27,7 @@ const description = (
   </p>
 );
 
-const AddNewBudget = ({onClick}) => {
+const AddNewBudget = ({ onClick }) => {
   const budgets = useSelector((state) => state.budgets);
   const [form, setForm] = useState({
     category: "",
@@ -75,8 +58,8 @@ const AddNewBudget = ({onClick}) => {
   };
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setForm((prev) => ({...prev, [name]: value}));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   return createPortal(

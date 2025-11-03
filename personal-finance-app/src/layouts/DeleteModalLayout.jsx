@@ -22,7 +22,9 @@ const DeleteModalLayout = ({ name, onClick, description }) => {
           <Button variant="destroy" onClick={handleDelete}>
             Yes, Confirm Deletion
           </Button>
-          <Button variant="tertiary">No, I want to go back</Button>
+          <Button variant="tertiary" onClick={onClick}>
+            No, I want to go back
+          </Button>
         </div>
       </div>
     </div>

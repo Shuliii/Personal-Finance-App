@@ -143,7 +143,10 @@ const BudgetsDetails = ({ budgets, transactions }) => {
       )}
       {deleteModal && (
         <DeleteBudget
-          onClick={() => setDeleteModal(false)}
+          onClick={() => {
+            setOpen(null);
+            setDeleteModal(false);
+          }}
           name={deleteModal}
         />
       )}
