@@ -1,37 +1,44 @@
 import styles from "./EditBudget.module.css";
 import Backdrop from "./Backdrop";
 import ModalLayout from "../../layouts/ModalLayout";
-import {createPortal} from "react-dom";
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import { createPortal } from "react-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { editBudget } from "../../store/budgetsSlice";
 
 const allThemes = [
-  {name: "Green", color: "#277c78"},
-  {name: "Yellow", color: "#f2cdac"},
-  {name: "Cyan", color: "#82c9d7"},
-  {name: "Navy", color: "#626070"},
-  {name: "Red", color: "#c94736"},
-  {name: "Purple", color: "#826cb0"},
-  {name: "Pink", color: "#af81ba"},
-  {name: "Turquoise", color: "#597c7c"},
-  {name: "Brown", color: "#93674f"},
-  {name: "Magenta", color: "#934f6f"},
-  {name: "Blue", color: "#3f82b2"},
-  {name: "Navy Grey", color: "#97a0ac"},
-  {name: "Army Green", color: "#7f9161"},
-  {name: "Gold", color: "#cab361"},
-  {name: "Orange", color: "#be6c49"},
+  { name: "Green", color: "#277c78" },
+  { name: "Yellow", color: "#f2cdac" },
+  { name: "Cyan", color: "#82c9d7" },
+  { name: "Navy", color: "#626070" },
+  { name: "Red", color: "#c94736" },
+  { name: "Purple", color: "#826cb0" },
+  { name: "Pink", color: "#af81ba" },
+  { name: "Turquoise", color: "#597c7c" },
+  { name: "Brown", color: "#93674f" },
+  { name: "Magenta", color: "#934f6f" },
+  { name: "Blue", color: "#3f82b2" },
+  { name: "Navy Grey", color: "#97a0ac" },
+  { name: "Army Green", color: "#7f9161" },
+  { name: "Gold", color: "#cab361" },
+  { name: "Orange", color: "#be6c49" },
 ];
 
 const description = (
   <p>As your budgets change, feel free to update your spending limits.</p>
 );
 
-const EditBudget = ({onClick, category}) => {
+const EditBudget = ({ onClick, category }) => {
+  const dispatch = useDispatch();
   const budgets = useSelector((state) => state.budgets);
   const selectedBudget = budgets.find((b) => b.category === category);
 
-  const [budget, setBudget] = useState(selectedBudget);
+  const [budget, setBudget] = useState({
+    category: selectedBudget.category,
+    maximum: selectedBudget.maximum,
+    theme: selectedBudget.theme.toLowerCase(),
+  });
+
   const usedThemes = budgets.map((b) => b.theme.toLowerCase());
 
   const currentTheme =
@@ -39,10 +46,20 @@ const EditBudget = ({onClick, category}) => {
       ?.name || "";
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setBudget((prev) => ({...prev, [name]: value}));
+    const { name, value } = e.target;
+    setBudget((prev) => ({ ...prev, [name]: value }));
   };
-  console.log(budget);
+
+  const handleEditClick = () => {
+    const newBudget = {
+      category: budget.category,
+      maximum: budget.maximum,
+      theme: budget.theme.toUpperCase(),
+    };
+    dispatch(editBudget(newBudget));
+    onClick();
+  };
+
   return createPortal(
     <>
       <Backdrop onClick={onClick} />
@@ -51,6 +68,7 @@ const EditBudget = ({onClick, category}) => {
         nav="Budget"
         description={description}
         onClick={onClick}
+        handleEditClick={handleEditClick}
       >
         <div className={styles.modal__form}>
           <label>
@@ -71,11 +89,15 @@ const EditBudget = ({onClick, category}) => {
           </label>
           <label>
             Theme
-            <select name="theme" value={currentTheme} onChange={handleChange}>
+            <select name="theme" value={budget.theme} onChange={handleChange}>
               {allThemes.map((theme) => (
                 <option
-                  key={theme.name}
-                  disabled={usedThemes.includes(theme.color)}
+                  key={theme.color}
+                  value={theme.color} // ✅ store hex, show name
+                  disabled={
+                    usedThemes.includes(theme.color.toLowerCase()) &&
+                    theme.color !== selectedBudget.theme
+                  }
                 >
                   {theme.name}
                 </option>

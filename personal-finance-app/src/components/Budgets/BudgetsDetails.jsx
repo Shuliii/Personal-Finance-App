@@ -1,30 +1,19 @@
 import styles from "./BudgetsDetails.module.css";
 import ArrowRight from "../../assets/images/icon-caret-right.svg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Elipsis from "../../assets/images/icon-ellipsis.svg";
-import {useState, useRef, useEffect} from "react";
+import { useState } from "react";
 import EditBudget from "../Modal/EditBudget";
+import DeleteBudget from "../Modal/DeleteBudget";
 
-const BudgetsDetails = ({budgets, transactions}) => {
+const BudgetsDetails = ({ budgets, transactions }) => {
   const [open, setOpen] = useState(null);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const menuRef = useRef(null);
 
   const toggleMenu = (category) => {
     setOpen((prev) => (prev === category ? null : category));
   };
-
-  // close dropdown when clicking outside
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (menuRef.current && !menuRef.current.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => document.removeEventListener("mousedown", handleClickOutside);
-  // }, []);
 
   const helper = budgets.map((budget) => {
     const spentMoney = transactions.filter(
@@ -44,7 +33,7 @@ const BudgetsDetails = ({budgets, transactions}) => {
         <div className={styles.budget__card__header}>
           <div
             className={styles.colorCircle}
-            style={{backgroundColor: budget.theme}}
+            style={{ backgroundColor: budget.theme }}
           ></div>
           <h1>{budget.category}</h1>
           <img
@@ -62,7 +51,7 @@ const BudgetsDetails = ({budgets, transactions}) => {
               </button>
               <button
                 className={styles.delete}
-                onClick={() => console.log("Delete Budget")}
+                onClick={() => setDeleteModal(budget.category)}
               >
                 Delete Budget
               </button>
@@ -74,14 +63,14 @@ const BudgetsDetails = ({budgets, transactions}) => {
           <div className={styles.progressBar}>
             <div
               className={styles.progressFill}
-              style={{width: `${percent}%`, backgroundColor: budget.theme}}
+              style={{ width: `${percent}%`, backgroundColor: budget.theme }}
             />
           </div>
           <div className={styles.content__details}>
             <div className={styles.content__details__left}>
               <div
                 className={styles.colorBar}
-                style={{backgroundColor: budget.theme}}
+                style={{ backgroundColor: budget.theme }}
               ></div>
               <div className={styles.textHelper}>
                 <h3>Spent</h3>
@@ -91,7 +80,7 @@ const BudgetsDetails = ({budgets, transactions}) => {
             <div className={styles.content__details__right}>
               <div
                 className={styles.colorBar}
-                style={{backgroundColor: "#f8f4f0"}}
+                style={{ backgroundColor: "#f8f4f0" }}
               ></div>
               <div className={styles.textHelper}>
                 <h3>Free</h3>
@@ -144,7 +133,19 @@ const BudgetsDetails = ({budgets, transactions}) => {
     <>
       <div className={styles.BudgetDetails}>{helper}</div>
       {editModal && (
-        <EditBudget onClick={() => setEditModal(false)} category={editModal} />
+        <EditBudget
+          onClick={() => {
+            setOpen(null);
+            setEditModal(false);
+          }}
+          category={editModal}
+        />
+      )}
+      {deleteModal && (
+        <DeleteBudget
+          onClick={() => setDeleteModal(false)}
+          name={deleteModal}
+        />
       )}
     </>
   );

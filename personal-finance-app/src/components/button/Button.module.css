@@ -19,3 +19,14 @@
   background: var(--beige-100);
   color: var(--grey-900);
 }
+
+.tertiary {
+  background: none;
+  color: var(--grey-500);
+  padding: 0;
+}
+
+.destroy {
+  background: var(--red);
+  color: var(--white);
+}

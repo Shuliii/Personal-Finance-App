@@ -20,7 +20,10 @@ const ModalLayout = ({
         </div>
         <div className={styles.modal__description}>{description}</div>
         {children}
-        <Button variant="primary" onClick={type === "Add" && handleAddClick}>
+        <Button
+          variant="primary"
+          onClick={type === "Add" ? handleAddClick : handleEditClick}
+        >
           {type === "Add" ? `Add ${nav}` : "Save Changes"}
         </Button>
       </div>
