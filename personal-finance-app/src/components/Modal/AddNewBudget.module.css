@@ -30,15 +30,6 @@
   letter-spacing: 0px;
 }
 
-small {
-  text-align: right;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0px;
-  color: var(--grey-500);
-}
-
 .placeholder {
   position: relative;
 }

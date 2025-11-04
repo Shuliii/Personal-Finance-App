@@ -67,7 +67,7 @@ const AddNewBudget = ({ onClick }) => {
       <Backdrop onClick={onClick} />
       <ModalLayout
         type="Add"
-        nav="Pot"
+        nav="Budget"
         description={description}
         onClick={onClick}
         handleAddClick={handleAddClick}

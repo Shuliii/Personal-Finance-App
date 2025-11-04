@@ -4,10 +4,14 @@ import Button from "../button/Button";
 import { useState } from "react";
 import DeletePot from "../Modal/DeletePot";
 import EditPot from "../Modal/EditPot";
+import AddMoneyPot from "../Modal/AddMoneyPot";
+import WithdrawMoneyPot from "../Modal/WithdrawMoneyPot";
 
 const Potscard = ({ pot, open, onToggle }) => {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
+  const [withdrawModal, setWithdrawModal] = useState(false);
 
   const percent = ((pot.total / pot.target) * 100).toPrecision(3);
   return (
@@ -58,7 +62,9 @@ const Potscard = ({ pot, open, onToggle }) => {
           </div>
         </div>
         <div className={styles.card__actions}>
-          <Button variant="secondary">+ Add Money</Button>
+          <Button variant="secondary" onClick={() => setAddModal(pot.name)}>
+            + Add Money
+          </Button>
           <Button variant="secondary">Withdraw</Button>
         </div>
       </div>
@@ -78,6 +84,14 @@ const Potscard = ({ pot, open, onToggle }) => {
             setDeleteModal(false);
           }}
           name={deleteModal}
+        />
+      )}
+      {addModal && (
+        <AddMoneyPot
+          onClick={() => {
+            setAddModal(false);
+          }}
+          name={addModal}
         />
       )}
     </>
