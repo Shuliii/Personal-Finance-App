@@ -65,7 +65,12 @@ const Potscard = ({ pot, open, onToggle }) => {
           <Button variant="secondary" onClick={() => setAddModal(pot.name)}>
             + Add Money
           </Button>
-          <Button variant="secondary">Withdraw</Button>
+          <Button
+            variant="secondary"
+            onClick={() => setWithdrawModal(pot.name)}
+          >
+            Withdraw
+          </Button>
         </div>
       </div>
       {editModal && (
@@ -92,6 +97,14 @@ const Potscard = ({ pot, open, onToggle }) => {
             setAddModal(false);
           }}
           name={addModal}
+        />
+      )}
+      {withdrawModal && (
+        <WithdrawMoneyPot
+          onClick={() => {
+            setWithdrawModal(false);
+          }}
+          name={withdrawModal}
         />
       )}
     </>
