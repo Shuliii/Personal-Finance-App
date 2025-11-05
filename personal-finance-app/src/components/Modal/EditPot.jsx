@@ -10,7 +10,6 @@ const description = (
 );
 
 const EditPot = ({onClick, category}) => {
-  const dispatch = useDispatch();
   const pots = useSelector((state) => state.pots);
   const selectedPot = pots.find((b) => b.name === category);
 
